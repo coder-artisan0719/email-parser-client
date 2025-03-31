@@ -1,0 +1,37 @@
+<aside class="hidden sm:block w-[65px] md:w-[260px]" 
+  [ngClass]="{
+    '!block fixed sm:relative bg-[#FCFCFC] z-3 w-[65px] h-full': isSidebarOpen
+  }">
+  
+  <div class="mt-[32px] pl-[29px]">
+    <img src="assets/inflektion-logo.png" alt="Logo" width="164px" class="hidden md:block"/>
+    <img src="assets/logo-sm.png" alt="Logo" width="30px" class="hidden sm:block block md:hidden"/>
+    <button 
+      class="text-2xl hover:text-purple-600 bg-white block sm:!hidden"
+      (click)="openLogoTab()"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+
+  <nav class="mt-[31px] px-2 md:px-0">
+    <div *ngFor="let item of sidebarItems"
+      class="flex w-[50px] md:w-[235px] p-[15px] my-[5px] font-xs"
+      [ngClass]="{
+        'bg-[#031050] text-white md:border-l-[5px] md:border-l-[#FF13B8]': item.active,
+        'text-gray-600': !item.active
+      }"
+    >
+      <img [src]="item.icon" alt="{{ item.label }}" width="24px" class="mr-[15px]"/>
+      <span class="text-base font-semibold hidden md:block">{{ item.label }}</span>
+    </div>
+  </nav>
+</aside>
+
+<!-- Mobile toggle button -->
+<button 
+  class="fixed top-[32px] left-[30px] sm:hidden text-2xl hover:text-purple-600 z-5"
+  (click)="openLogoTab()"
+>
+  <i class="fas fa-bars"></i>
+</button>

@@ -1,0 +1,41 @@
+<div class="relative inline-block">
+  <button
+    (click)="showPicker = !showPicker"
+    class="flex items-center gap-2 px-4 py-2 bg-white border rounded shadow hover:border-gray-300"
+  >
+    <img src="assets/calendar.png" width="20" alt="calendar" />
+    <span class="text-sm text-[#0A0F53]">
+      {{ selectedStartDate | date : "MMM d, y" }} -
+      {{ selectedEndDate | date : "MMM d, y" }}
+    </span>
+    <i class="fa-solid fa-caret-down text-xs"></i>
+  </button>
+
+  <div
+    *ngIf="showPicker"
+    class="absolute z-50 flex gap-4 mt-2 bg-white shadow-md p-4 rounded border"
+  >
+    <div class="flex flex-col">
+      <label class="text-xs mb-1 text-gray-500">Start Date</label>
+      <input
+        type="date"
+        class="border rounded px-3 py-1 text-sm"
+        [(ngModel)]="startDate"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label class="text-xs mb-1 text-gray-500">End Date</label>
+      <input
+        type="date"
+        class="border rounded px-3 py-1 text-sm"
+        [(ngModel)]="endDate"
+      />
+    </div>
+    <button
+      class="ml-2 mt-3 h-10 px-4 text-sm bg-[#4F26B8] text-white rounded hover:bg-blue-700"
+      (click)="applyDateRange()"
+    >
+      Apply
+    </button>
+  </div>
+</div>

@@ -1,0 +1,142 @@
+<div class="mb-6">
+  <div class="flex justify-between">
+    <div>
+      <div class="relative w-[280px] ml-10 md:ml-0">
+        <div
+          class="flex items-center justify-between px-2 py-1 text-[#0A0F53] font-bold text-2xl border-transparent rounded cursor-pointer"
+        >
+          <span>Power Plate</span>
+          <i class="fa-solid fa-caret-down text-xs font-semibold"></i>
+        </div>
+      </div>
+      <span class="px-2 text-base text-[#9097B9] font-semibold hidden sm:block"
+        >Dashboard</span
+      >
+    </div>
+    <div class="flex gap-2">
+      <div
+        class="flex justify-center items-center bg-[#FF14B9] text-white text-base !rounded-full w-[45px] h-[45px]"
+      >
+        HD
+      </div>
+      <div class="mr-5 hidden sm:block font-semibold">
+        <span class="text-xl">TEST</span><br />
+        <span class="text-base">User</span>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-4 flex-wrap"
+  >
+    <app-data-picker></app-data-picker>
+    <app-button-actions></app-button-actions>
+  </div>
+</div>
+
+<!-- Table -->
+<div *ngIf="loading" class="flex justify-center items-center py-10">
+  <div
+    class="animate-spin rounded-full h-10 w-10 border-t-4 border-purple-600 border-opacity-50"
+  ></div>
+</div>
+
+<h5 *ngIf="loading" class="text-base text-center text-[#031050]">
+  Data is loading...
+</h5>
+
+<div *ngIf="error" class="text-center text-red-600 text-2xl py-5">
+  {{ error }}
+</div>
+
+<div
+  *ngIf="!loading && !error"
+  class="overflow-auto text-sm rounded-lg shadow border border-gray-200 bg-white"
+>
+  <table class="min-w-full text-left text-gray-700">
+    <thead class="bg-[#031050] text-white text-base">
+      <tr>
+        <th
+          *ngFor="let col of columns"
+          (click)="sortedPartners(col.key)"
+          class="w-[{{col.width}}%] cursor-pointer px-3 py-2 text-left font-normal whitespace-nowrap"
+        >
+          {{ col.label }}
+          <i
+            class="fa-solid ml-1 text-[10px]"
+            [ngClass]="{
+              'fa-sort-up': sortTitle === col.key && sortDirection === 'asc',
+              'fa-sort-down': sortTitle === col.key && sortDirection === 'desc',
+              'fa-sort': sortTitle !== col.key,
+              '!hidden': col.label === ''
+            }"
+          ></i>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr
+        *ngFor="let partner of paginatedPartners"
+        class="hover:bg-gray-50 even:bg-[#F4F7FE] odd:bg-white"
+      >
+        <ng-container *ngFor="let key of columns.slice(0, -1)">
+          <td class="px-6 py-2 whitespace-nowrap">
+            {{
+              key.key === "grosssales" || key.key === "commissions"
+                ? "$" + partner[key.key]
+                : partner[key.key]
+            }}
+          </td>
+        </ng-container>
+        <td class="px-6 py-2 whitespace-nowrap flex justify-center">
+          <button
+            class="flex items-center text-white gap-2 text-[10px] bg-[#5E33CE] px-3 py-2 !rounded-full cursor-pointer hover:bg-[#1B0653]"
+          >
+            <i class="fa-solid fa-list-ul"></i>
+            Details
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Pagination -->
+<div *ngIf="!loading && !error" class="mt-4 text-sm text-gray-500">
+  <div class="text-center text-sm">
+    Showing {{ startItem }}–{{ coutItem }} of {{ partnerList.length }} entries
+  </div>
+  <div class="flex justify-center items-center gap-4 mt-6"> 
+    <button
+      class="w-10 h-10 !rounded-full border text-sm text-[#0A0F53] flex items-center justify-center"
+      [ngClass]="{
+        'border-[#D4D7E5] text-[#D4D7E5] cursor-not-allowed': currentPage === 1,
+        'border-[#0A0F53] hover:bg-gray-100': currentPage > 1
+      }"
+      (click)="goToPage(currentPage - 1)"
+      [disabled]="currentPage === 1"
+    >
+      <i class="fas fa-chevron-left"></i>
+    </button>
+ 
+    <div
+      class="w-10 h-10 !rounded-full bg-[#4F26B8] text-white text-sm flex items-center justify-center"
+    >
+      {{ currentPage }}
+    </div>
+ 
+    <button
+      class="w-10 h-10 !rounded-full border border-[#0A0F53] text-sm text-[#0A0F53] flex items-center justify-center hover:bg-gray-100"
+      [ngClass]="{
+        'border-[#D4D7E5] text-[#D4D7E5] cursor-not-allowed':
+          currentPage === totalPages,
+        'border-[#0A0F53] hover:bg-gray-100': currentPage > totalPages
+      }"
+      (click)="goToPage(currentPage + 1)"
+      [disabled]="currentPage === totalPages"
+    >
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+</div>

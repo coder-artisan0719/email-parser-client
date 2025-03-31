@@ -1,0 +1,15 @@
+<div class="flex flex-col sm:flex-row gap-3 mr-80 w-full sm:w-auto">
+  <button
+    *ngFor="let btn of buttonList"
+    (click)="openModal(btn.action)"
+    class="flex items-center justify-center text-sm gap-2 px-4 py-2 !rounded-full text-white whitespace-nowrap shadow-md w-full sm:w-auto bg-gradient-to-r from-[#1E0B50] to-[#5E33CE] hover:opacity-90 transition cursor-pointer"
+  >
+    {{ btn.label }}
+    <img [src]="btn.image" [alt]="btn.alt" width="17" height="14" />
+  </button>
+</div>
+<app-modal
+  [titleModal]="titleModal"
+  [isOpen]="isModalOpen"
+  (close)="closeModal()"
+></app-modal>
