@@ -1,41 +1,52 @@
-<div class="relative inline-block">
-  <button
-    (click)="showPicker = !showPicker"
-    class="flex items-center gap-2 px-4 py-2 bg-white border rounded shadow hover:border-gray-300"
-  >
-    <img src="assets/calendar.png" width="20" alt="calendar" />
-    <span class="text-sm text-[#0A0F53]">
-      {{ selectedStartDate | date : "MMM d, y" }} -
-      {{ selectedEndDate | date : "MMM d, y" }}
-    </span>
-    <i class="fa-solid fa-caret-down text-xs"></i>
-  </button>
-
-  <div
-    *ngIf="showPicker"
-    class="absolute z-50 flex gap-4 mt-2 bg-white shadow-md p-4 rounded border"
-  >
-    <div class="flex flex-col">
-      <label class="text-xs mb-1 text-gray-500">Start Date</label>
-      <input
-        type="date"
-        class="border rounded px-3 py-1 text-sm"
-        [(ngModel)]="startDate"
-      />
-    </div>
-    <div class="flex flex-col">
-      <label class="text-xs mb-1 text-gray-500">End Date</label>
-      <input
-        type="date"
-        class="border rounded px-3 py-1 text-sm"
-        [(ngModel)]="endDate"
-      />
-    </div>
+<div class="relative w-full sm:w-auto">
+    <!-- Toggle Button -->
     <button
-      class="ml-2 mt-3 h-10 px-4 text-sm bg-[#4F26B8] text-white rounded hover:bg-blue-700"
-      (click)="applyDateRange()"
+      (click)="showPicker = !showPicker"
+      class="flex items-center justify-between gap-2 px-4 py-2 w-full sm:w-[300px] bg-white border rounded shadow hover:border-gray-300"
     >
-      Apply
+      <img src="assets/calendar.png" width="20" alt="calendar" />
+      <span class="text-sm text-[#0A0F53] whitespace-nowrap">
+        {{ selectedStartDate | date: 'MMM d, y' }} -
+        {{ selectedEndDate | date: 'MMM d, y' }}
+      </span>
+      <i class="fa-solid fa-caret-down text-xs"></i>
     </button>
+  
+    <!-- Date Picker Panel -->
+    <div
+      *ngIf="showPicker"
+      class="absolute z-50 mt-2 bg-white shadow-md px-4 pt-4 pb-3 rounded border w-full sm:min-w-[500px]"
+    >
+      <div class="flex flex-col sm:flex-row sm:items-end sm:gap-4 w-full">
+        <!-- Start Date -->
+        <div class="flex flex-col flex-1 w-full mb-4 sm:mb-0">
+          <label class="text-xs mb-1 text-gray-500">Start Date</label>
+          <input
+            type="date"
+            class="border rounded px-3 py-2 text-sm w-full"
+            [(ngModel)]="startDate"
+          />
+        </div>
+  
+        <!-- End Date -->
+        <div class="flex flex-col flex-1 w-full mb-4 sm:mb-0">
+          <label class="text-xs mb-1 text-gray-500">End Date</label>
+          <input
+            type="date"
+            class="border rounded px-3 py-2 text-sm w-full"
+            [(ngModel)]="endDate"
+          />
+        </div>
+  
+        <!-- Apply Button -->
+        <div class="w-full sm:w-auto">
+          <button
+            class="h-10 w-full sm:w-auto px-5 text-sm bg-[#4F26B8] text-white rounded hover:bg-[#3a1d8c] transition"
+            (click)="applyDateRange()"
+          >
+            Apply
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
-</div>

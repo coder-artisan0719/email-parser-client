@@ -1,11 +1,11 @@
 export const columns = [
-  { key: 'id', label: 'ID', width: 5 },
-  { key: 'partnerName', label: 'Name', width: 15 },
-  { key: 'partnerType', label: 'Type', width: 15 },
-  { key: 'contract', label: 'Contract', width: 20 },
-  { key: 'grosssales', label: 'Gross Sales', width: 15 },
-  { key: 'commissions', label: 'Commissions', width: 15 },
-  { key: 'conversions', label: 'Conversions', width: 15 },
+  { key: 'id', label: 'ID' },
+  { key: 'partnerName', label: 'Name' },
+  { key: 'partnerType', label: 'Type' },
+  { key: 'contract', label: 'Contract' },
+  { key: 'grosssales', label: 'Gross Sales' },
+  { key: 'commissions', label: 'Commissions' },
+  { key: 'conversions', label: 'Conversions' },
   { key: 'action', label: '' }
 ];
 

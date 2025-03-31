@@ -1,7 +1,7 @@
 <div class="mb-6">
   <div class="flex justify-between">
     <div>
-      <div class="relative w-[280px] ml-10 md:ml-0">
+      <div class="relative ml-10 sm:ml-0 w-[200px] sm:w-[290px] ">
         <div
           class="flex items-center justify-between px-2 py-1 text-[#0A0F53] font-bold text-2xl border-transparent rounded cursor-pointer"
         >
@@ -59,7 +59,7 @@
         <th
           *ngFor="let col of columns"
           (click)="sortedPartners(col.key)"
-          class="w-[{{col.width}}%] cursor-pointer px-3 py-2 text-left font-normal whitespace-nowrap"
+          class="cursor-pointer px-3 py-2 text-left font-normal whitespace-nowrap"
         >
           {{ col.label }}
           <i
