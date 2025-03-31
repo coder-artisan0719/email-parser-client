@@ -12,20 +12,27 @@
     >
       <i class="fas fa-bars"></i>
     </button>
-  </div>
+  </div> 
 
   <nav class="mt-[31px] px-2 md:px-0">
-    <div *ngFor="let item of sidebarItems"
-      class="flex w-[50px] md:w-[235px] p-[15px] my-[5px] font-xs"
+    <div 
+      *ngFor="let item of sidebarItems"
+      class="flex w-[50px] md:w-[235px] p-[15px] my-[5px] font-xs cursor-pointer transition-all duration-200"
       [ngClass]="{
         'bg-[#031050] text-white md:border-l-[5px] md:border-l-[#FF13B8]': item.active,
-        'text-gray-600': !item.active
+        'text-gray-600 gap-2 hover:bg-[#e9ebeb] hover:md:border-l-[#FF13B8]': !item.active
       }"
     >
-      <img [src]="item.icon" alt="{{ item.label }}" width="24px" class="mr-[15px]"/>
+      <img 
+        [src]="item.icon" 
+        alt="{{ item.label }}" 
+        width="24px" 
+        class="mr-[15px]"
+      />  
       <span class="text-base font-semibold hidden md:block">{{ item.label }}</span>
     </div>
   </nav>
+
 </aside>
 
 <!-- Mobile toggle button -->

@@ -1,59 +1,109 @@
-# Portal
+# Partner Portal
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
+## 📄 Project Overview
 
-## Development server
+The **Partner Portal** is a single-page application (SPA) built using Angular that allows internal teams to view and manage partner data in a structured, interactive, and visually consistent table layout. The application replicates a provided Figma design with pixel-perfect accuracy, includes pagination, responsive UI, placeholder actions, and a loading state, ensuring a user-friendly experience aligned with modern web development best practices.
 
-To start a local development server, run:
+This project was completed as a home task and simulates interaction with a mock partner data API.
 
-```bash
-ng serve
+---
+
+## 🚀 Key Features
+
+- ✅ **Dynamic Data Fetching** from a mock API using Angular services
+- ✅ **Pixel-perfect UI** based on the provided Figma design
+- ✅ **Responsive Layout** using Tailwind CSS and Bootstrap
+- ✅ **Table with Pagination** (15 items per page)
+- ✅ **Placeholder Actions** (Modals for Message Partners and Export List)
+- ✅ **Loading Spinner** during API calls
+- ✅ **User-friendly Error Handling**
+- ✅ **Component-based Architecture**
+- ✅ **Animations using Angular Animations** (transitions & hover effects)
+
+---
+
+## 🧱 Project Structure
+
+```
+src/app/
+│
+├── components/                   # Reusable UI components
+│   ├── button-actions/           # Action buttons (e.g., Export, Message Partners)
+│   ├── data-picker/              # Date range picker component
+│   ├── modal/                    # Reusable modal component
+│   ├── partner-table/            # Table displaying partner data
+│   └── sidebar/                  # Sidebar navigation component
+│
+├── data/
+│   └── const.ts                  # Static UI data (columns, buttons, sidebar items)
+│
+├── models/
+│   └── partner.model.ts          # Partner interface for data typing
+│
+├── services/
+│   └── partner.service.ts        # Angular service to fetch API data
+│
+└── app.component.ts             # Root component rendering the full page
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 🧑‍💻 Technologies Used
 
-## Code scaffolding
+- **Angular:** v19.2
+- **Tailwind CSS:** v4
+- **Bootstrap:** v5.3
+- **RxJS:** For observables and async data handling
+- **HttpClient:** For API integration
+- **Angular Animations:** For transitions and hover effects
+- **FontAwesome:** For icons
+- **Mock API:** [MockanAPI](https://mockanapi.com/s/67ae1b3403f9ffca6f47eb79/partners?mock_delay=5000)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
-```bash
-ng generate component component-name
-```
+## 📊 Table Implementation
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- Displays columns such as: ID, Name, Type, Contract, Gross Sales, Commissions, and Conversions
+- Pagination: Shows 15 records per page using Angular logic
+- Responsive: Adapts to smaller screens and enables horizontal scrolling
 
-```bash
-ng generate --help
-```
+## ⚠️ Error Handling
 
-## Building
+- API Failures: Gracefully displays a user-friendly error message if the API call fails
+- Empty/Missing Data: Checks for undefined fields before rendering
+- Fallback States: Displays loader (spinner) while awaiting response
 
-To build the project run:
+## 📱 Responsive Layout
+- Built using Tailwind and Bootstrap utilities
+- Mobile-friendly: Table layout adapts to screen width
+- Scrollable table on smaller viewports
 
-```bash
-ng build
-```
+## 📦 Setup Instructions
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+### 1. Clone the Repository
 
 ```bash
-ng e2e
+git clone https://github.com/coder-artisan0719/partner-portal-client.git
+cd partner-portal-client
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### 2. Install Dependencies
 
-## Additional Resources
+```bash
+npm install
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### 3. Update Environment File
+
+Update your environment.ts file with the correct Mock API URL:
+```bash
+MOCK_API_URL = https://mockanapi.com/s/67ae1b3403f9ffca6f47eb79/partners?mock_delay=5000
+```
+
+### 4. Run the Project
+
+```bash
+npm start
+```
+
+### 5. Build the Project
+```bash
+npm run build
+```

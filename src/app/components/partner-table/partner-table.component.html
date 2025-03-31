@@ -29,8 +29,8 @@
   <div
     class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-4 flex-wrap"
   >
-    <app-data-picker></app-data-picker>
-    <app-button-actions></app-button-actions>
+    <app-data-picker/>
+    <app-button-actions/>
   </div>
 </div>
 
@@ -45,7 +45,7 @@
   Data is loading...
 </h5>
 
-<div *ngIf="error" class="text-center text-red-600 text-2xl py-5">
+<div *ngIf="error" class="text-center text-red-600 text-xl py-5">
   {{ error }}
 </div>
 
